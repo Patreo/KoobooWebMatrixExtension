@@ -201,6 +201,314 @@
   <data name="ContentQuery_Where_WhereStartsWith" xml:space="preserve">
     <value>.WhereStartsWith(string fieldName, object value)</value>
   </data>
+  <data name="Form_AddContent" xml:space="preserve">
+    <value>&lt;div class="common-form"&gt;
+    &lt;h5 class="title"&gt;Add content&lt;/h5&gt;
+    &lt;form method="post" action="@Url.FrontUrl().SubmissionUrl("PostComment")"&gt;
+        @Html.AntiForgeryToken()       
+        @*&lt;input type="hidden" name="SuccessedUrl" value='@Url.FrontUrl().PageUrl("Thankyou")'/&gt;*@
+		@*&lt;input type="hidden" name="FailedUrl" value='@Url.FrontUrl().PageUrl("Failed")'/&gt;*@
+        @*&lt;input type="hidden" name="JsonResult" value='true'/&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].FolderName" value="@ViewBag.category.FolderName" /&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].UUID" value="@ViewBag.category.UUID" /&gt;*@
+		@*&lt;input type="hidden" name="ParentUUID" value="@ViewBag.Article.UUID" /&gt;*@
+        &lt;table&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="title"&gt;title:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;input type="text" id="title" name="title" data-val-required="title is required" data-val="true" /&gt;
+                        @Html.ValidationMessageForInput("title")
+                        &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="Summary"&gt;Summary:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;textarea id="Summary" name="Summary" cols="20" rows="10"&gt;&lt;/textarea&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;/th&gt;
+                    &lt;td&gt;&lt;input type="submit" name="submit" value="submit" /&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="Form_Ajax_AddContent" xml:space="preserve">
+    <value>@{ var guid = Guid.NewGuid(); }
+&lt;script type="text/javascript" type="text/javascript"&gt;
+    $(function(){
+        var form = $('#form-@guid').ajaxForm({
+            dataType: 'json',
+            type:'post',
+            beforeSerialize: function ($form, options) {
+
+                //inform the server you need JsonResult return
+                var jsonResultHidden = form.find('input:hidden[name=JsonResult]').val(true);
+                if (!jsonResultHidden.length) {
+                    jsonResultHidden = $('&lt;input type="hidden" name="JsonResult" value="true"/&gt;').appendTo(form);
+                }
+            },
+            success: function (response, textStatus) {
+                if (response.Success) {
+                    if (response.RedirectUrl) {
+                        window.location.href = response.RedirectUrl;
+                    } else {
+                        window.location.reload(true);
+                    }
+                } else {
+                    var msgStr = '';
+                    for (var i = 0; i &lt; response.Messages.length; i++) {
+                        msgStr += response.Messages[i] + '\r\n';
+                    }
+
+                    var validator = form.validate();
+                    //var errors = [];
+                    for (var i = 0; i &lt; responseData.FieldErrors.length; i++) {
+                        var obj = {};
+                        obj[responseData.FieldErrors[i].FieldName] = responseData.FieldErrors[i].ErrorMessage;
+                        validator.showErrors(obj);
+                    }
+
+                    alert(msgStr);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { }
+        });
+    });
+&lt;/script&gt;
+&lt;div class="common-form"&gt;
+    &lt;h5 class="title"&gt;Add content&lt;/h5&gt;
+    &lt;form id="form-@guid" method="post" action="@Url.FrontUrl().SubmissionUrl("PostComment")"&gt;
+        @Html.AntiForgeryToken()
+        &lt;input type="hidden" name="JsonResult" value="true" /&gt;
+        @*&lt;input type="hidden" name="RedirectUrl" value='@Url.FrontUrl().PageUrl("Thankyou")'/&gt;*@
+        @*&lt;input type="hidden" name="JsonResult" value='true'/&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].FolderName" value="@ViewBag.category.FolderName " /&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].UUID" value="@ViewBag.category.UUID" /&gt;*@
+		@*&lt;input type="hidden" name="ParentUUID" value="@ViewBag.Article.UUID" /&gt;*@
+        &lt;table&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="title"&gt;title:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;input type="text" id="title" name="title" data-val-required="title is required" data-val="true" /&gt;
+                        @Html.ValidationMessageForInput("title")
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="Summary"&gt;Summary:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;textarea id="Summary" name="Summary" cols="20" rows="10"&gt;&lt;/textarea&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;/th&gt;
+                    &lt;td&gt;&lt;input type="submit" name="submit" value="submit" /&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="Form_Ajax_UpdateContent" xml:space="preserve">
+    <value>@{ var guid = Guid.NewGuid(); }
+&lt;script type="text/javascript" type="text/javascript"&gt;
+    $(function(){
+        var form = $('#form-@guid').ajaxForm({
+            dataType: 'json',
+            type:'post',
+            beforeSerialize: function ($form, options) {
+
+                //inform the server you need JsonResult return
+                var jsonResultHidden = form.find('input:hidden[name=JsonResult]').val(true);
+                if (!jsonResultHidden.length) {
+                    jsonResultHidden = $('&lt;input type="hidden" name="JsonResult" value="true"/&gt;').appendTo(form);
+                }
+            },
+            success: function (response, textStatus) {
+                if (response.Success) {
+                    if (response.RedirectUrl) {
+                        window.location.href = response.RedirectUrl;
+                    } else {
+                        window.location.reload(true);
+                    }
+                } else {
+                    var msgStr = '';
+                    for (var i = 0; i &lt; response.Messages.length; i++) {
+                        msgStr += response.Messages[i] + '\r\n';
+                    }
+
+                    var validator = form.validate();
+                    //var errors = [];
+                    for (var i = 0; i &lt; responseData.FieldErrors.length; i++) {
+                        var obj = {};
+                        obj[responseData.FieldErrors[i].FieldName] = responseData.FieldErrors[i].ErrorMessage;
+                        validator.showErrors(obj);
+                    }
+
+                    alert(msgStr);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) { }
+        });
+    });
+&lt;/script&gt;
+
+&lt;div class="common-form"&gt;
+    &lt;h5 class="title"&gt;Update content&lt;/h5&gt;
+    &lt;form id="form-@guid" method="post"  action="@Url.FrontUrl().SubmissionUrl("UpdateComment")"&gt;
+        @Html.AntiForgeryToken()
+        &lt;input type="hidden" name="JsonResult" value="true" /&gt;
+        &lt;input type="hidden" name="uuid" value="@ViewBag.Article.UUID" /&gt;
+        @*&lt;input type="hidden" name="RedirectUrl" value='@Url.FrontUrl().PageUrl("Thankyou")'/&gt;*@
+        @*&lt;input type="hidden" name="JsonResult" value='true'/&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].FolderName" value="@ViewBag.category.FolderName" /&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].UUID" value="@ViewBag.category.UUID" /&gt;*@	
+		@*&lt;input type="hidden" name="ParentUUID" value="@ViewBag.Article.UUID" /&gt;*@
+        &lt;table&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="title"&gt;title:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;input type="text" id="title" name="title" data-val-required="title is required" data-val="true" value="@ViewBag.Article.Title"/&gt;
+                        @Html.ValidationMessageForInput("title")
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="Summary"&gt;Summary:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;textarea id="Summary" name="Summary" cols="20" rows="10"&gt;@ViewBag.Article.Summary&lt;/textarea&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;/th&gt;
+                    &lt;td&gt;&lt;input type="submit" name="submit" value="submit" /&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="Form_ContactUs" xml:space="preserve">
+    <value>&lt;div class="common-form"&gt;
+    &lt;h6 class="title"&gt;Contact us&lt;/h6&gt;
+    &lt;form method="post" action="@Url.FrontUrl().SubmissionUrl("ContactUs")"&gt;
+        @Html.AntiForgeryToken()
+        &lt;!-- this contact form will send an email to the email address defined in system/settings/smtp--&gt;
+        @*&lt;input type="file" name="image"/&gt;*@
+        @*&lt;input type="hidden" name="SuccessedUrl" value='@Url.FrontUrl().PageUrl("Thankyou")'/&gt;*@
+        @*&lt;input type="hidden" name="FailedUrl" value='@Url.FrontUrl().PageUrl("Failed")'/&gt;*@
+        &lt;p class="field"&gt;
+            &lt;label for="from"&gt;From:&lt;/label&gt;
+            &lt;input type="text" id="from" name="From" data-val-required="From is required" data-val="true" @Validator.Regex(Kooboo.RegexPatterns.EmailAddress, "The email is invalid.").ClientValidationRule.GenerateHtmlAttributes() /&gt;
+            @Html.ValidationMessageForInput("From")
+        &lt;/p&gt;
+        &lt;p class="field"&gt;
+            &lt;label for="subject"&gt;Subject:&lt;/label&gt;
+            &lt;input type="text" id="subject" name="Subject" data-val-required="Subject is required" data-val="true" /&gt;
+            @Html.ValidationMessageForInput("Subject")
+        &lt;/p&gt;
+        &lt;p class="field"&gt;
+            &lt;label for="body"&gt;body:&lt;/label&gt;
+            &lt;textarea id="body" name="Body" cols="20" rows="10"&gt;&lt;/textarea&gt;
+        &lt;/p&gt;
+        &lt;div class="buttons"&gt;
+            &lt;button type="submit" name="submit"&gt;Submit&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="Form_DeleteContent" xml:space="preserve">
+    <value>&lt;div class="common-form"&gt;
+    &lt;form action="@Url.FrontUrl().SubmissionUrl("DeleteComment", new { uuid = comment.UUID })" method="post"&gt;
+        @Html.AntiForgeryToken()
+        &lt;input type="submit" value="Delete" /&gt;
+    &lt;/form&gt;    
+&lt;/div&gt;</value>
+  </data>
+  <data name="Form_Search" xml:space="preserve">
+    <value>@using Kooboo.CMS.Search;
+@using Kooboo.CMS.Content.Models;
+
+ &lt;form action="@Url.FrontUrl().PageUrl("search")" method="get"&gt;     
+        &lt;input type="text" name="key" id="searchBox" /&gt;
+        &lt;button type="submit"&gt;
+            Search&lt;/button&gt;
+  &lt;/form&gt;
+
+@{
+    var key = Page_Context.Current.PageRequestContext.AllQueryString["key"];
+    var strPageIndex = Page_Context.Current.PageRequestContext.AllQueryString["pageIndex"];
+    var pageIndex =1;
+    if (!string.IsNullOrEmpty(strPageIndex))
+	{
+        int.TryParse(strPageIndex,out pageIndex);
+	}
+    var results=  Repository.Current.Search(key,pageIndex,10);
+}
+@foreach (var item in results)
+{
+&lt;div class="block"&gt;  
+  &lt;h4 class="title"&gt;
+  &lt;a href='@item.Url'&gt;@Html.Raw(item.HighlightedTitle)&lt;/a&gt;&lt;/h4&gt; 
+  &lt;p&gt;@Html.Raw(item.HighlightedBody)&lt;/p&gt;
+&lt;/div&gt;
+}
+@{
+    var pageOption = new PagerOptions
+    {
+        NextPageText = "Next »",
+        PrevPageText = "« Previous",
+        CssClass="pagination",
+		PageIndexParameterName="pageIndex",
+        CurrentPagerItemWrapperFormatString="&lt;span class=\"current\"&gt;{0}&lt;/span&gt;",
+        NavigationPagerItemWrapperFormatString="&lt;span class=\"pagenavigation\"&gt;{0}&lt;/span&gt;"
+    };
+}
+@Html.FrontHtml().Pager(results, pageOption)</value>
+  </data>
+  <data name="Form_UpdateContent" xml:space="preserve">
+    <value>&lt;div class="common-form"&gt;
+    &lt;h5 class="title"&gt;Update content&lt;/h5&gt;
+    &lt;form method="post" action="@SubmissionHelper.UpdateContentUrl()"&gt;
+        @Html.AntiForgeryToken()
+        &lt;input type="hidden" name="FolderName" value="@SecurityHelper.Encrypt(ViewBag.Article.FolderName)" /&gt;
+        &lt;input type="hidden" name="Published" value="true" /&gt;
+        &lt;input type="hidden" name="uuid" value="@ViewBag.Article.UUID" /&gt;
+        @*&lt;input type="hidden" name="SuccessedUrl" value='@Url.FrontUrl().PageUrl("Thankyou")'/&gt;*@
+		@*&lt;input type="hidden" name="FailedUrl" value='@Url.FrontUrl().PageUrl("Failed")'/&gt;*@
+        @*&lt;input type="hidden" name="JsonResult" value='true'/&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].FolderName" value="@ViewBag.category.FolderName" /&gt;*@
+        @*&lt;input type="hidden" name="Categories[0].UUID" value="@ViewBag.category.UUID" /&gt;*@
+		@*&lt;input type="hidden" name="ParentFolder" value="@SecurityHelper.Encrypt("news")" /&gt;*@
+		@*&lt;input type="hidden" name="ParentUUID" value="@ViewBag.Article.UUID" /&gt;*@
+        &lt;table&gt;
+            &lt;tbody&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="title"&gt;title:&lt;/label&gt;&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;input type="text" name="title" data-val-required="title is required" data-val="true" value="@ViewBag.Article.Title"/&gt;
+                        @Html.ValidationMessageForInput("title")
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;label for="Summary"&gt;Summary:&lt;/th&gt;
+                    &lt;td&gt;
+                        &lt;textarea name="Summary" cols="20" rows="10"&gt;@ViewBag.Article.Summary&lt;/textarea&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;&lt;/th&gt;
+                    &lt;td&gt;&lt;input type="submit" name="submit" value="submit" /&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</value>
+  </data>
   <data name="InlineEdit_EditField" xml:space="preserve">
     <value>@ViewHelper.EditField(item, "fieldName")</value>
   </data>
@@ -214,16 +522,235 @@
     <value>@("Label Text".Label())</value>
   </data>
   <data name="Layout_Default" xml:space="preserve">
-    <value />
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	@Html.FrontHtml().HtmlTitle()
+	@Html.FrontHtml().Meta()
+	@Html.FrontHtml().RegisterStyles()
+  	@Html.FrontHtml().RegisterScripts()
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        @Html.FrontHtml().Position("Main")
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
   </data>
   <data name="Layout_OneColumn" xml:space="preserve">
-    <value />
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    @Html.FrontHtml().HtmlTitle()
+    @Html.FrontHtml().Meta()
+    &lt;!-- The styles below should be move into css files --&gt;
+    &lt;style type="text/css"&gt;
+        /* Layout:This should be put in layout.css */
+        #body-container {
+            margin: 0 auto;
+            width: 960px;
+        }
+        #header {
+            margin-bottom: 10px;
+        }
+        #main-container {
+            margin-bottom: 10px;
+        }
+        /* End layout */
+    &lt;/style&gt;
+    @Html.FrontHtml().RegisterStyles()
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="body-container"&gt;
+        &lt;!--header--&gt;
+        &lt;div id="header"&gt;
+            @Html.FrontHtml().Position("header")
+        &lt;/div&gt;
+        &lt;!--end header--&gt;
+        &lt;!--main container--&gt;
+        &lt;div id="main-container"&gt;
+            @Html.FrontHtml().Position("main")
+        &lt;/div&gt;
+        &lt;!--end main container--&gt;
+        &lt;!--footer--&gt;
+        &lt;div id="footer"&gt;
+            @Html.FrontHtml().Position("footer")
+        &lt;/div&gt;
+        &lt;!--end footer--&gt;
+    &lt;/div&gt;
+    @Html.FrontHtml().RegisterScripts()
+&lt;/body&gt;
+&lt;/html&gt;</value>
   </data>
   <data name="Layout_ThreeColumns" xml:space="preserve">
-    <value />
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    @Html.FrontHtml().HtmlTitle()
+    @Html.FrontHtml().Meta()
+    &lt;!-- The styles below should be move into css files --&gt;
+    &lt;style type="text/css"&gt;
+        /* Layout:This should be put in layout.css */
+        #body-container {
+            margin: 0 auto;
+            width: 960px;
+        }
+        #header {
+            margin-bottom: 10px;
+        }
+        #main-container {
+            margin-bottom: 10px;
+        }
+        #left-sidebar {
+            float: left;
+            width: 200px;
+        }
+        #right-sidebar {
+            float: right;
+            width: 200px;
+        }
+        #main {
+            margin: 0 210px;
+        }
+        /* End layout */
+        /* Clearfix:This should be put in base.css */
+        .clearfix {
+            display: block;
+        }
+        .clearfix:after {
+            content: ".";
+            display: block;
+            clear: both;
+            visibility: hidden;
+            height: 0;
+        }
+        /* For Safari */
+        html[xmlns] .clearfix {
+            display: block;
+        }
+        /* For IE6 */
+        *html .clearfix {
+            height: 1%;
+        }
+        /* For IE7 */
+        * + html .clearfix {
+            height: 1%;
+        }
+        /* End clearfix */
+    &lt;/style&gt;
+    @Html.FrontHtml().RegisterStyles()
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="body-container"&gt;
+        &lt;!--header--&gt;
+        &lt;div id="header"&gt;
+            @Html.FrontHtml().Position("header")
+        &lt;/div&gt;
+        &lt;!--end header--&gt;
+        &lt;!--main container--&gt;
+        &lt;div id="main-container" class="clearfix"&gt;
+            &lt;div id="left-sidebar"&gt;
+                @Html.FrontHtml().Position("leftSidebar")
+            &lt;/div&gt;
+            &lt;div id="right-sidebar"&gt;
+                @Html.FrontHtml().Position("rightSidebar")
+            &lt;/div&gt;
+            &lt;div id="main"&gt;
+                @Html.FrontHtml().Position("main")
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!--end main container--&gt;
+        &lt;!--footer--&gt;
+        &lt;div id="footer"&gt;
+            @Html.FrontHtml().Position("footer")
+        &lt;/div&gt;
+        &lt;!--end footer--&gt;
+    &lt;/div&gt;
+    @Html.FrontHtml().RegisterScripts()
+&lt;/body&gt;
+&lt;/html&gt;</value>
   </data>
   <data name="Layout_TwoColumns" xml:space="preserve">
-    <value />
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    @Html.FrontHtml().HtmlTitle()
+    @Html.FrontHtml().Meta()
+    &lt;!-- The styles below should be move into css files --&gt;
+    &lt;style type="text/css"&gt;
+        /* Layout:This should be put in layout.css */
+        #body-container {
+            margin: 0 auto;
+            width: 960px;
+        }
+        #header {
+            margin-bottom: 10px;
+        }
+        #main-container {
+            margin-bottom: 10px;
+        }
+        #sidebar {
+            float: left;
+            width: 200px;
+        }
+        #main {
+            float: right;
+            width: 750px;
+        }
+        /* End layout */
+        /* Clearfix:This should be put in base.css */
+        .clearfix {
+            display: block;
+        }
+        .clearfix:after {
+            content: ".";
+            display: block;
+            clear: both;
+            visibility: hidden;
+            height: 0;
+        }
+        /* For Safari */
+        html[xmlns] .clearfix {
+            display: block;
+        }
+        /* For IE6 */
+        *html .clearfix {
+            height: 1%;
+        }
+        /* For IE7 */
+        * + html .clearfix {
+            height: 1%;
+        }
+        /* End clearfix */
+    &lt;/style&gt;
+    @Html.FrontHtml().RegisterStyles()
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id="body-container"&gt;
+        &lt;!--header--&gt;
+        &lt;div id="header"&gt;
+            @Html.FrontHtml().Position("header")
+        &lt;/div&gt;
+        &lt;!--end header--&gt;
+        &lt;!--main container--&gt;
+        &lt;div id="main-container" class="clearfix"&gt;
+            &lt;div id="sidebar"&gt;
+                @Html.FrontHtml().Position("sidebar")
+            &lt;/div&gt;
+            &lt;div id="main"&gt;
+                @Html.FrontHtml().Position("main")
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!--end main container--&gt;
+        &lt;!--footer--&gt;
+        &lt;div id="footer"&gt;
+            @Html.FrontHtml().Position("footer")
+        &lt;/div&gt;
+        &lt;!--end footer--&gt;
+    &lt;/div&gt;
+    @Html.FrontHtml().RegisterScripts()
+&lt;/body&gt;
+&lt;/html&gt;</value>
   </data>
   <data name="Link_FileUrl" xml:space="preserve">
     <value>@Url.FrontUrl().FileUrl("Logo.png")</value>
@@ -262,7 +789,14 @@
     <value>@Url.FrontUrl().ViewUrl("Index", new { key = "hello"})</value>
   </data>
   <data name="Menu_Breadcrumb" xml:space="preserve">
-    <value />
+    <value>&lt;ul class="breadcrumb"&gt;
+@foreach (var item in MenuHelper.Breadcrumb())
+{
+    &lt;li&gt;@Html.FrontHtml().PageLink(item.LinkText, item.FullName)&lt;/li&gt;
+    &lt;li class="separator"&gt;|&lt;/li&gt;
+}
+&lt;li&gt;@(Page_Context.Current.ContentTitle??MenuHelper.Current().LinkText)&lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="Menu_CurrentPage" xml:space="preserve">
     <value>@{var current = MenuHelper.Current();}</value>
@@ -274,16 +808,40 @@
     <value>@{var parent = MenuHelper.Parent();}</value>
   </data>
   <data name="Menu_SiblingPages" xml:space="preserve">
-    <value />
+    <value>&lt;ul class="menu"&gt;
+@foreach (var item in MenuHelper.Sibling())
+{
+    if (item.Navigation.Show)
+    {
+        &lt;li class ='@(MenuHelper.IsCurrent(item) ? "current" : "")'&gt;@Html.FrontHtml().PageLink(item.LinkText, item.FullName)&lt;/li&gt;
+    }
+}&lt;/ul&gt;</value>
   </data>
   <data name="Menu_SubPages" xml:space="preserve">
-    <value />
+    <value>&lt;ul class="menu"&gt;
+@foreach (var item in MenuHelper.Sub())
+{
+    if (item.Navigation.Show)
+    {
+        &lt;li class ='@(MenuHelper.IsCurrent(item) ? "current" : "")'&gt;@Html.FrontHtml().PageLink(item.LinkText, item.FullName)&lt;/li&gt;
+    }
+}&lt;/ul&gt;</value>
   </data>
   <data name="Menu_TopPages" xml:space="preserve">
-    <value />
+    <value>&lt;ul class="menu"&gt;
+@foreach (var item in MenuHelper.Top())
+{
+    if (item.Navigation.Show)
+    {
+       &lt;li class ='@(MenuHelper.IsCurrent(item) ? "current" : "")'&gt; @Html.FrontHtml().PageLink(item.LinkText, item.FullName)&lt;/li&gt;
+    }
+}&lt;/ul&gt;</value>
   </data>
   <data name="MultiFilesField" xml:space="preserve">
-    <value />
+    <value>@foreach(var file in ContentHelper.SplitMultiFiles(ViewBag.Article.Images))
+{
+	&lt;img src="@file" alt=""/&gt;
+}</value>
   </data>
   <data name="Position" xml:space="preserve">
     <value>@Html.FrontHtml().Position("Main")</value>

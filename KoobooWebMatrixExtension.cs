@@ -111,6 +111,19 @@ namespace KoobooWebMatrixExtension
             CreateRibbonMenu(ref lstContentQuery, "Where", lstContentQueryWhere);
             CreateRibbonMenu(ref lstItemsCodeHelper, "ContentQuery", lstContentQuery);
 
+            List<RibbonButtonBase> lstForms = new List<RibbonButtonBase>();
+            CreateRibbonButton(ref lstForms, "Add content", Resources.Form_AddContent);
+            CreateRibbonButton(ref lstForms, "Contact us", Resources.Form_ContactUs);
+            CreateRibbonButton(ref lstForms, "Delete content", Resources.Form_DeleteContent);
+            CreateRibbonButton(ref lstForms, "Search", Resources.Form_Search);
+            CreateRibbonButton(ref lstForms, "Update content", Resources.Form_UpdateContent);
+
+            List<RibbonButtonBase> lstAjaxForms = new List<RibbonButtonBase>();
+            CreateRibbonButton(ref lstAjaxForms, "Add content", Resources.Form_Ajax_AddContent);
+            CreateRibbonButton(ref lstAjaxForms, "Update content", Resources.Form_Ajax_UpdateContent);
+            CreateRibbonMenu(ref lstForms, "Ajax", lstAjaxForms);
+            CreateRibbonMenu(ref lstItemsCodeHelper, "Forms", lstForms);
+
             List<RibbonButtonBase> lstInlineEdit = new List<RibbonButtonBase>();
             CreateRibbonButton(ref lstInlineEdit,"Edit field atributes", Resources.InlineEdit_EditFieldAtributes);
             CreateRibbonButton(ref lstInlineEdit,"Edit field", Resources.InlineEdit_EditField);

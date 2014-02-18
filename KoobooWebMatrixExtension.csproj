@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\Users\PFernandes\AppData\Local\Microsoft\WebMatrix\Extensions\30\KoobooWebMatrixExtensions\</OutputPath>
+    <OutputPath>..\..\..\..\..\Users\Pedro\AppData\Local\Microsoft\WebMatrix\Extensions\30\KoobooWebMatrixExtensions\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
