@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8789A356-B4FD-4964-8C2F-04BBEB596C5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KoobooWebMatrixExtension</RootNamespace>
+    <AssemblyName>KoobooWebMatrixExtension</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\Users\PFernandes\AppData\Local\Microsoft\WebMatrix\Extensions\30\KoobooWebMatrixExtensions\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WebMatrix.Extensibility">
+      <HintPath>C:\Program Files (x86)\Microsoft WebMatrix\Microsoft.WebMatrix.Extensibility.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="KoobooWebMatrixExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Souce_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Souce_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!-- 
+	This section enables some functionality for debugging WebMatrix extensions in Visual Studio.
+	Comment out either of the following settings to disable the added functionality.
+	
+	EnableExtensions: 
+		This will re-enable any disabled WebMatrix extensions when doing a build.
+		WebMatrix will disable any extensions that cause a crash, automatically re-enabling extensions
+		will aid the debugging process.
+	
+	CopyExtension:
+		This will copy this project, and all of its dependent outputs into a WebMatrix extension directory.
+		This ensures that while developing, webmatrix will always run with the latest built version.
+	
+  -->
+  <PropertyGroup>
+    <ReenableExtensions>true</ReenableExtensions>
+    <CopyExtension>true</CopyExtension>
+  </PropertyGroup>
+  <PropertyGroup>
+    <BuildDependsOn>ReenableExtensions;$(BuildDependsOn);CopyExtension</BuildDependsOn>
+    <WebMatrixExtensionsDirectory>$(USERPROFILE)\AppData\Local\Microsoft\WebMatrix\Extensions\20\</WebMatrixExtensionsDirectory>
+    <TargetExtensionDirectory>$(WebMatrixExtensionsDirectory)$(TargetName)\</TargetExtensionDirectory>
+    <WebMatrixDisabledExtensionsFile>$(WebMatrixExtensionsDirectory)\DisabledExtensions</WebMatrixDisabledExtensionsFile>
+    <WebMatrixCrashInfoFile>$(TEMP)\WebMatrix.crash.info</WebMatrixCrashInfoFile>
+  </PropertyGroup>
+  <Target Name="ReenableExtensions" Condition=" '$(ReenableExtensions)' == 'true' ">
+    <Delete Files="$(WebMatrixCrashInfoFile)" Condition="Exists('$(WebMatrixCrashInfoFile)')" />
+    <Delete Files="$(WebMatrixDisabledExtensionsFile)" Condition="Exists('$(WebMatrixDisabledExtensionsFile)')" />
+  </Target>
+  <Target Name="CopyExtension" Condition=" '$(CopyExtension)' == 'true' " DependsOnTargets="AssignProjectConfiguration;_BuildProjectReferencesTraverse;">
+    <Message Text="Copying Extension Files to: $(TargetExtensionDirectory)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Build" Properties="Configuration=$(Configuration);OutDir=$(TargetExtensionDirectory);CopyExtension=false" />
+  </Target>
+  <Target Name="_BuildProjectReferencesTraverse" DependsOnTargets="AssignProjectConfiguration">
+    <Message Text="Building @(ProjectReferenceWithConfiguration)" />
+    <MSBuild Projects="@(ProjectReferenceWithConfiguration)" Targets="BuildCompile" BuildInParallel="$(BuildInParallel)" Properties="%(ProjectReferenceWithConfiguration.SetConfiguration);%(ProjectReferenceWithConfiguration.SetPlatform);OutDir=$(TargetExtensionDirectory)" Condition="'$(BuildingInsideVisualStudio)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '%(ProjectReferenceWithConfiguration.BuildReference)' == 'true' and Exists('%(ProjectReferenceWithConfiguration.Identity)')" ContinueOnError="!$(BuildingProject)" RemoveProperties="%(ProjectReferenceWithConfiguration.GlobalPropertiesToRemove)">
+    </MSBuild>
+  </Target>
+</Project>

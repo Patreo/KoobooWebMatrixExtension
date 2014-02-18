@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ContentQuery_CreateQuery" xml:space="preserve">
+    <value>.CreateQuery()</value>
+  </data>
+  <data name="ContentQuery_MediaFolder" xml:space="preserve">
+    <value>ContentHelper.MediaFolder(folderName)</value>
+  </data>
+  <data name="ContentQuery_Order_OrderBy" xml:space="preserve">
+    <value>.OrderBy(string field)</value>
+  </data>
+  <data name="ContentQuery_Order_OrderByDescending" xml:space="preserve">
+    <value>.OrderByDescending(string field)</value>
+  </data>
+  <data name="ContentQuery_Result_Categories" xml:space="preserve">
+    <value>.Categories("CategoryFolder")</value>
+  </data>
+  <data name="ContentQuery_Result_Children" xml:space="preserve">
+    <value>.Children("CommentsFolder")</value>
+  </data>
+  <data name="ContentQuery_Result_Count" xml:space="preserve">
+    <value>.Count()</value>
+  </data>
+  <data name="ContentQuery_Result_First" xml:space="preserve">
+    <value>.First()</value>
+  </data>
+  <data name="ContentQuery_Result_FirstOrDefault" xml:space="preserve">
+    <value>.FirstOrDefault()</value>
+  </data>
+  <data name="ContentQuery_Result_Last" xml:space="preserve">
+    <value>.Last()</value>
+  </data>
+  <data name="ContentQuery_Result_LastOrDefault" xml:space="preserve">
+    <value>.LastOrDefault()</value>
+  </data>
+  <data name="ContentQuery_Result_Parent" xml:space="preserve">
+    <value>.Parent("ParentFolder")</value>
+  </data>
+  <data name="ContentQuery_Schema" xml:space="preserve">
+    <value>ContentHelper.Schema(schemaName)</value>
+  </data>
+  <data name="ContentQuery_Skip" xml:space="preserve">
+    <value>.Skip(int count)</value>
+  </data>
+  <data name="ContentQuery_Take" xml:space="preserve">
+    <value>.Take(int count)</value>
+  </data>
+  <data name="ContentQuery_TextFolder" xml:space="preserve">
+    <value>ContentHelper.TextFolder(folderName)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereBetween" xml:space="preserve">
+    <value>.WhereBetween(string fieldName, object start, object end)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereBetweenOrEqual" xml:space="preserve">
+    <value>.WhereBetweenOrEqual(string fieldName, object start, object end)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereCategory" xml:space="preserve">
+    <value>.WhereCategory(ContentHelper.TextFolder("CategoryFolder").CreateQuery().WhereEquals("UUID", ""))</value>
+  </data>
+  <data name="ContentQuery_Where_WhereContains" xml:space="preserve">
+    <value>.WhereContains(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereEndsWith" xml:space="preserve">
+    <value>.WhereEndsWith(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereEquals" xml:space="preserve">
+    <value>.WhereEquals(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereGreaterThan" xml:space="preserve">
+    <value>.WhereGreaterThan(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereGreaterThanOrEqual" xml:space="preserve">
+    <value>.WhereGreaterThanOrEqual(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereLessThan" xml:space="preserve">
+    <value>.WhereLessThan(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereLessThanOrEqual" xml:space="preserve">
+    <value>.WhereLessThanOrEqual(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereNotEquals" xml:space="preserve">
+    <value>.WhereNotEquals(string fieldName, object value)</value>
+  </data>
+  <data name="ContentQuery_Where_WhereStartsWith" xml:space="preserve">
+    <value>.WhereStartsWith(string fieldName, object value)</value>
+  </data>
+  <data name="InlineEdit_EditField" xml:space="preserve">
+    <value>@ViewHelper.EditField(item, "fieldName")</value>
+  </data>
+  <data name="InlineEdit_EditFieldAtributes" xml:space="preserve">
+    <value>@ViewHelper.EditFieldAttributes(item, "fieldName")</value>
+  </data>
+  <data name="InlineEdit_EditItemAtributes" xml:space="preserve">
+    <value>@ViewHelper.EditItemAttributes(item)</value>
+  </data>
+  <data name="Label" xml:space="preserve">
+    <value>@("Label Text".Label())</value>
+  </data>
+  <data name="Layout_Default" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_OneColumn" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_ThreeColumns" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_TwoColumns" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Link_FileUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().FileUrl("Logo.png")</value>
+  </data>
+  <data name="Link_MediaContentUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().MediaContentUrl(fullFoldername, fileName)</value>
+  </data>
+  <data name="Link_PageLink" xml:space="preserve">
+    <value>@Html.FrontHtml().PageLink("sample", "Index")</value>
+  </data>
+  <data name="Link_PageLinkWithParams" xml:space="preserve">
+    <value>@Html.FrontHtml().PageLink("Link Text", "Index", new{ key="value"}, new { title="title"})</value>
+  </data>
+  <data name="Link_PageUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().PageUrl("Index")</value>
+  </data>
+  <data name="Link_PageUrlWithParams" xml:space="preserve">
+    <value>@Url.FrontUrl().PageUrl("Index", new { key = "hello"})</value>
+  </data>
+  <data name="Link_ResizeImage" xml:space="preserve">
+    <value>@Html.FrontHtml().ResizeImage(imagePath, width, height)</value>
+  </data>
+  <data name="Link_ResizeImageUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().ResizeImageUrl(imagePath, width, height)</value>
+  </data>
+  <data name="Link_ScriptFileUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().ScriptFileUrl("myscript.js")</value>
+  </data>
+  <data name="Link_SubmissionUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().SubmissionUrl("SubmissionName")</value>
+  </data>
+  <data name="Link_ThemeFileUrl" xml:space="preserve">
+    <value>@Url.FrontUrl().ThemeFileUrl("images/header-bg.png")</value>
+  </data>
+  <data name="Link_ViewUrlWithParams" xml:space="preserve">
+    <value>@Url.FrontUrl().ViewUrl("Index", new { key = "hello"})</value>
+  </data>
+  <data name="Menu_Breadcrumb" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu_CurrentPage" xml:space="preserve">
+    <value>@{var current = MenuHelper.Current();}</value>
+  </data>
+  <data name="Menu_CurrentPageChecker" xml:space="preserve">
+    <value>@{bool isCurrent =  MenuHelper.IsCurrent(page);}</value>
+  </data>
+  <data name="Menu_ParentPage" xml:space="preserve">
+    <value>@{var parent = MenuHelper.Parent();}</value>
+  </data>
+  <data name="Menu_SiblingPages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu_SubPages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu_TopPages" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MultiFilesField" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>@Html.FrontHtml().Position("Main")</value>
+  </data>
+  <data name="QueryString" xml:space="preserve">
+    <value>@Page_Context.Current.PageRequestContext.AllQueryString["id"]</value>
+  </data>
+  <data name="RegisterMeta" xml:space="preserve">
+    <value>@Html.FrontHtml().Meta()</value>
+  </data>
+  <data name="RegisterScripts" xml:space="preserve">
+    <value>@Html.FrontHtml().RegisterScripts()</value>
+  </data>
+  <data name="RegisterStyles" xml:space="preserve">
+    <value>@Html.FrontHtml().RegisterStyles()</value>
+  </data>
+  <data name="RegisterTitle" xml:space="preserve">
+    <value>@Html.FrontHtml().HtmlTitle()</value>
+  </data>
+  <data name="RenderHtmlBlock" xml:space="preserve">
+    <value>@Html.FrontHtml().RenderHtmlBlock("blockName")</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>@Html.FrontHtml().RenderView("MyView", ViewData)</value>
+  </data>
+</root>
