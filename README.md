@@ -3,7 +3,7 @@ KoobooWebMatrixExtension
 
 ### How to Execute
 
-Project alrady added to WebMatrix Extensions and just open Webmatrix and in Extensions Windows search for Kooboo Extensions, or visit
+Project already added to WebMatrix Extensions and just open Webmatrix and in Extensions Windows search for Kooboo Extensions, or visit
 WebMatrix Extensions page:
 
    http://extensions.webmatrix.com/packages/KoobooExtensions/1.0
